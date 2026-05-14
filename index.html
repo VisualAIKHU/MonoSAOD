@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Primary Meta Tags -->
+  <!-- TODO: Replace with your paper title and author names -->
+  <meta name="title" content="MonoSAOD: Monocular 3D Object Detection with Sparsely Annotated Label">
+  <!-- TODO: Write a compelling 150-160 character description of your research -->
+  <meta name="description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
+  <!-- TODO: Add 5-10 relevant keywords for your research area -->
+  <meta name="keywords" content="KEYWORD1, KEYWORD2, KEYWORD3, machine learning, computer vision, AI">
+  <!-- TODO: List all authors -->
+  <meta name="author" content="FIRST_AUTHOR_NAME, SECOND_AUTHOR_NAME">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <!-- TODO: Replace with your institution or lab name -->
+  <meta property="og:site_name" content="INSTITUTION_OR_LAB_NAME">
+  <!-- TODO: Same as paper title above -->
+  <meta property="og:title" content="PAPER_TITLE">
+  <!-- TODO: Same as description above -->
+  <meta property="og:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
+  <!-- TODO: Replace with your actual website URL -->
+  <meta property="og:url" content="https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE">
+  <!-- TODO: Create a 1200x630px preview image and update path -->
+  <meta property="og:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PAPER_TITLE - Research Preview">
+  <meta property="article:published_time" content="2024-01-01T00:00:00.000Z">
+  <meta property="article:author" content="FIRST_AUTHOR_NAME">
+  <meta property="article:section" content="Research">
+  <meta property="article:tag" content="KEYWORD1">
+  <meta property="article:tag" content="KEYWORD2">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- TODO: Replace with your lab/institution Twitter handle -->
+  <meta name="twitter:site" content="@YOUR_TWITTER_HANDLE">
+  <!-- TODO: Replace with first author's Twitter handle -->
+  <meta name="twitter:creator" content="@AUTHOR_TWITTER_HANDLE">
+  <!-- TODO: Same as paper title above -->
+  <meta name="twitter:title" content="PAPER_TITLE">
+  <!-- TODO: Same as description above -->
+  <meta name="twitter:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
+  <!-- TODO: Same as social preview image above -->
+  <meta name="twitter:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
+  <meta name="twitter:image:alt" content="PAPER_TITLE - Research Preview">
+
+  <!-- Academic/Research Specific -->
+  <meta name="citation_title" content="PAPER_TITLE">
+  <meta name="citation_author" content="FIRST_AUTHOR_LAST, FIRST_AUTHOR_FIRST">
+  <meta name="citation_author" content="SECOND_AUTHOR_LAST, SECOND_AUTHOR_FIRST">
+  <meta name="citation_publication_date" content="2024">
+  <meta name="citation_conference_title" content="CONFERENCE_NAME">
+  <meta name="citation_pdf_url" content="https://YOUR_DOMAIN.com/static/pdfs/paper.pdf">
+  
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#2563eb">
+  <meta name="msapplication-TileColor" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://ajax.googleapis.com">
+  <link rel="preconnect" href="https://documentcloud.adobe.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+
+  <!-- TODO: Replace with your paper title and authors -->
+  <title>MonoSAOD: Monocular 3D Object Detection with Sparsely Annotated Label</title>
+  
+  <!-- Favicon and App Icons -->
+  <link rel="icon" type="image/png" href="static/images/visualai.png">
+  <link rel="apple-touch-icon" href="static/images/visualai.png">
+  
+  <!-- Critical CSS - Load synchronously -->
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  
+  <!-- Non-critical CSS - Load asynchronously -->
+
+  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+  <!-- Fallback for browsers that don't support preload -->
+  <noscript>
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+  
+  <!-- Fonts - Optimized loading -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Defer non-critical JavaScript -->
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/bulma-slider.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+  
+  <!-- Structured Data for Academic Papers -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "PAPER_TITLE",
+    "description": "BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "FIRST_AUTHOR_NAME",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "INSTITUTION_NAME"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "SECOND_AUTHOR_NAME",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "INSTITUTION_NAME"
+        }
+      }
+    ],
+    "datePublished": "2024-01-01",
+    "publisher": {
+      "@type": "Organization",
+      "name": "CONFERENCE_OR_JOURNAL_NAME"
+    },
+    "url": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE",
+    "image": "https://YOUR_DOMAIN.com/static/images/social_preview.png",
+    "keywords": ["KEYWORD1", "KEYWORD2", "KEYWORD3", "machine learning", "computer vision"],
+    "abstract": "FULL_ABSTRACT_TEXT_HERE",
+    "citation": "BIBTEX_CITATION_HERE",
+    "isAccessibleForFree": true,
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "mainEntity": {
+      "@type": "WebPage",
+      "@id": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE"
+    },
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "RESEARCH_AREA_1"
+      },
+      {
+        "@type": "Thing", 
+        "name": "RESEARCH_AREA_2"
+      }
+    ]
+  }
+  </script>
+  
+  <!-- Website/Organization Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "INSTITUTION_OR_LAB_NAME",
+    "url": "https://YOUR_INSTITUTION_WEBSITE.com",
+    "logo": "https://YOUR_DOMAIN.com/static/images/favicon.ico",
+    "sameAs": [
+      "https://twitter.com/YOUR_TWITTER_HANDLE",
+      "https://github.com/YOUR_GITHUB_USERNAME"
+    ]
+  }
+  </script>
+</head>
+<body>
+
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+<main id="main-content">
+
+  <!-- Title + Abstract -->
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+
+            <h1 class="title is-1 publication-title">
+              MonoSAOD: Monocular 3D Object Detection with Sparsely Annotated Label
+            </h1>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://jun-jung.notion.site/Jun-young-Jung-2787b6e3e82880dbafb3f1055cbffa40" target="_blank">Junyoung Jung</a><sup>*</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://visualai.khu.ac.kr/people/students/seokwon-kim" target="_blank">Seokwon Kim</a><sup>*</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://visualai.khu.ac.kr/people/professor" target="_blank">Jung Uk Kim</a><sup>†</sup>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                {jun3700, kimsw0683, ju.kim}@khu.ac.kr
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                Kyung Hee University<br>
+                <a href="https://visualai.khu.ac.kr/" target="_blank">Visual AI Lab</a>
+              </span>
+              <span class="eql-cntrb">
+                <small><br><sup>*</sup>Indicates Equal Contribution</small>
+              </span>
+                <span class="eql-cntrb">
+                <small><br><sup>†</sup>Corresponding Author</small>
+              </span>
+            </div>
+
+            <div class="publication-links" style="margin-top: 1rem;">
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2604.01646" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+              <span class="link-block">
+                <a href="https://github.com/VisualAIKHU/MonoSAOD" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+              </span>
+
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2604.01646" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+            </div>
+
+            <div class="publication-venue" style="margin-top: 1.25rem;">
+              <p class="title is-4" style="margin-bottom: 0;">
+                CVPR 2026
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Abstract inside title section -->
+        <div class="columns is-centered has-text-centered" style="margin-top: 3rem;">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                Monocular 3D object detection has achieved impressive performance on densely annotated datasets. However, it struggles when only a fraction of objects are labeled due to the high cost of 3D annotation. This sparsely annotated setting is common in real-world scenarios where annotating every object is impractical. To address this, we propose a novel framework for sparsely annotated monocular 3D object detection with two key modules. First, we propose Road-Aware Patch Augmentation (RAPA), which leverages sparse annotations by augmenting segmented object patches onto road regions while preserving 3D geometric consistency. Second, we propose Prototype-Based Filtering (PBF), which generates high-quality pseudo-labels by filtering predictions through prototype similarity and depth uncertainty. It maintains global 2D RoI feature prototypes and selects pseudo-labels that are both feature-consistent with learned prototypes and have reliable depth estimates. Our training strategy combines geometry-preserving augmentation with prototype-guided pseudo-labeling to achieve robust detection under sparse supervision. Extensive experiments demonstrate the effectiveness of the proposed method.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- End Title + Abstract -->
+
+
+  <!-- Method + Results + BibTeX in one white section -->
+  <section class="section" id="method-results-bibtex">
+    <div class="container is-max-desktop">
+
+      <!-- Motivation / Introduction -->
+<div class="columns is-centered has-text-centered">
+  <div class="column is-full">
+    <h2 class="title is-3">Motivation</h2>
+
+    <div class="content has-text-justified">
+      <p>
+        Monocular 3D object detection is attractive for real-world perception because it only requires a single camera, 
+        but training accurate detectors still depends on dense 3D annotations. These annotations are costly because 
+        each object requires depth, dimension, and orientation labels. In practice, many visible objects are left 
+        unlabeled, creating a sparsely annotated setting with inconsistent supervision.
+      </p>
+      
+      <p>
+        This problem is more difficult than standard sparsely annotated 2D detection. In monocular 3D detection, 
+        high classification confidence does not necessarily indicate accurate 3D geometry; a prediction may look 
+        reliable in 2D while having large depth or orientation errors. Therefore, simply applying existing SAOD 
+        methods or confidence-based pseudo-labeling can introduce noisy 3D supervision.
+      </p>
+    
+    </div>
+
+    <figure class="image" style="margin-top: 2rem;">
+      <img src="static/images/figure1.png"
+           alt="Motivation of MonoSAOD"
+           loading="lazy"
+           style="max-width: 70%; height: auto; display: block; margin-left: auto; margin-right: auto;">
+    </figure>
+  </div>
+</div>
+<!-- End Motivation / Introduction -->
+
+<!-- Method -->
+<div class="columns is-centered has-text-centered" style="margin-top: 4rem;">
+  <div class="column is-full">
+    <h2 class="title is-3">Method</h2>
+
+    <div class="content has-text-justified">
+      <p>
+        MonoSAOD is built on a teacher-student framework designed for sparsely annotated 
+        monocular 3D object detection. Given sparse 3D labels, the framework first enriches 
+        the training data using Road-Aware Patch Augmentation (RAPA), which places clean 
+        object patches onto plausible road regions while preserving 3D geometric consistency.
+      </p>
+
+      <p>
+        To further reduce the effect of missing annotations, Prototype-Based Filtering (PBF) 
+        selects reliable pseudo-labels from teacher predictions. Instead of relying only on 
+        classification confidence, PBF jointly considers semantic feature consistency through 
+        object prototypes and geometric reliability through depth uncertainty. The selected 
+        pseudo-labels are accumulated into a GT Bank and used as additional supervision for 
+        training the student network.
+      </p>
+    </div>
+
+    <figure class="image" style="margin-top: 2rem;">
+      <img src="static/images/figure2.png"
+           alt="MonoSAOD overall architecture"
+           loading="lazy"
+           style="max-width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;">
+    </figure>
+
+    <p class="subtitle has-text-centered" style="margin-top: 0.75rem;">
+      Overall architecture
+    </p>
+  </div>
+</div>
+
+      <!-- Results -->
+      <div class="columns is-centered has-text-centered" style="margin-top: 4rem;">
+        <div class="column is-full">
+          <h2 class="title is-3">Results</h2>
+
+          <!-- Result image 1 -->
+          <figure class="image" style="margin-bottom: 2rem;">
+            <img src="static/images/figure3.png"
+                 alt="MonoSAOD result 1"
+                 loading="lazy"
+                 style="max-width: 70%; height: auto; display: block; margin-left: auto; margin-right: auto;">
+            <figcaption class="has-text-centered" style="margin-top: 0.75rem;">
+              Examples of the RAPA module
+            </figcaption>
+          </figure>
+
+          <!-- Result image 2 -->
+          <figure class="image" style="margin-bottom: 2rem;">
+            <img src="static/images/figure4.png"
+                 alt="MonoSAOD result 2"
+                 loading="lazy"
+                 style="max-width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;">
+            <figcaption class="has-text-centered" style="margin-top: 0.75rem;">
+              Progression of pseudo-labels selected by the proposed PBF module for GT Bank enrichment
+            </figcaption>
+          </figure>
+
+
+          <!-- Result image 3 -->
+          <figure class="image" style="margin-bottom: 2rem;">
+            <img src="static/images/figure5.png"
+                 alt="MonoSAOD result 2"
+                 loading="lazy"
+                 style="max-width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;">
+            <figcaption class="has-text-centered" style="margin-top: 0.75rem;">
+               Line plot of GT annotation growth, where 30% (blue), 50% (green), and 70% (red) represent different sparsity levels
+            </figcaption>
+          </figure>
+
+          <!-- Result image 4 -->
+          <figure class="image" style="margin-bottom: 2rem;">
+            <img src="static/images/table1.png"
+                 alt="MonoSAOD result 2"
+                 loading="lazy"
+                 style="max-width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;">
+            <figcaption class="has-text-centered" style="margin-top: 0.75rem;">
+               Detection results of car category on the KITTI validation set under sparse annotation ratios of 30%, 50%, and 70% 
+            </figcaption>
+          </figure>
+
+          <!-- Result image 5 -->
+          <figure class="image" style="margin-bottom: 2rem;">
+            <img src="static/images/table2.png"
+                 alt="MonoSAOD result 2"
+                 loading="lazy"
+                 style="max-width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;">
+            <figcaption class="has-text-centered" style="margin-top: 0.75rem;">
+               Ablation study of the proposed modules
+            </figcaption>
+          </figure>
+          
+        </div>
+      </div>
+
+      <!-- BibTeX -->
+      <div class="content" id="BibTeX" style="margin-top: 4rem;">
+        <div class="bibtex-header">
+          <h2 class="title is-3">BibTeX</h2>
+          <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+            <i class="fas fa-copy"></i>
+            <span class="copy-text">Copy</span>
+          </button>
+        </div>
+
+        <pre id="bibtex-code"><code>@article{jung2026monosaod,
+  title={MonoSAOD: Monocular 3D Object Detection with Sparsely Annotated Label},
+  author={Jung, Junyoung and Kim, Seokwon and Kim, Jun Uk},
+  journal={arXiv preprint arXiv:2604.01646},
+  year={2026}
+}</code></pre>
+      </div>
+
+    </div>
+  </section>
+  <!-- End Method + Results + BibTeX -->
+
+</main>
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
