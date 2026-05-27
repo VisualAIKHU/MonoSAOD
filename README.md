@@ -1,8 +1,11 @@
-# MonoSAOD: Monocular 3D Object Detection with Sparsely Annotated label
+# MonoSAOD: Monocular 3D Object Detection with Sparsely Annotated Label
+
+[![Paper](https://img.shields.io/badge/arXiv-2604.01646-b31b1b.svg)](https://arxiv.org/pdf/2604.01646)
+[![Project Page](https://img.shields.io/badge/Project-Page-blue)](https://visualaikhu.github.io/MonoSAOD/)
 
 The paper has been accepted by CVPR 2026.
 
-Official implementation of 'MonoSAOD: Monocular 3D Object Detection with Sparsely Annotated label'
+Official implementation of **MonoSAOD: Monocular 3D Object Detection with Sparsely Annotated Label**
 
 ## Introduction
  
