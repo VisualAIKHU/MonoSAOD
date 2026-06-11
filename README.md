@@ -268,10 +268,11 @@ This project is based on MonoDETR. Please refer to the LICENSE file for more inf
 If you use this code in your research, please cite:
 
 ```bibtex
-@inproceedings{monodetr,
-  title={MonoDETR: Depth-aware Transformer for Monocular 3D Object Detection},
-  author={...},
-  booktitle={...},
-  year={...}
+@inproceedings{jung2026monosaod,
+  title={MonoSAOD: Monocular 3D Object Detection with Sparsely Annotated Label},
+  author={Jung, Junyoung and Kim, Seokwon and Kim, Jung Uk},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={4718--4727},
+  year={2026}
 }
 ```
