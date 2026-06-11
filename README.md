@@ -45,7 +45,7 @@ By combining geometry-aware augmentation and uncertainty-aware pseudo-labeling w
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/isaccKim/MonoSAOD.git
+git clone https://github.com/VisualAIKHU/MonoSAOD.git
 cd MonoSAOD
 ```
 
