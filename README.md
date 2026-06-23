@@ -104,7 +104,7 @@ dataset:
 
 ### Patch Augmentation Setup
 
-Download the patch files and road masks from here: 
+Download the patch files and road masks from here: [patch](https://drive.google.com/file/d/1rO1oI8lneJBAw8cz_W2ByCJ2LTSPI3CY/view?usp=sharing), [road masks](https://drive.google.com/file/d/1f_Y_C2QX_29zFQJ7XKpGlA3dn8rmDxni/view?usp=sharing)
 
  **patch files:**
    - **`patch/`**: Contains cropped object patches from training images
