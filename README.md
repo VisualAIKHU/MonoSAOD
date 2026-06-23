@@ -119,7 +119,9 @@ Download the patch files and road masks from here: [patch](https://drive.google.
 To start training with the default configuration:
 
 ```bash
-bash train.sh configs/monodetr.yaml > logs/monodetr.log
+bash train_stage1.sh configs/monodetr.yaml > logs/monodetr.log # Get the pre-trained checkpoints first
+
+bash train_stage2.sh configs/monodetr.yaml > logs/monodetr.log # pseudo-label training
 ```
 
 ## Evaluation
