@@ -153,8 +153,7 @@ MonoSAOD/
 ```
 
 ## License
-
-This project is based on MonoDETR. Please refer to the LICENSE file for more information.
+This project is based on [MonoDETR](https://github.com/ZrrSkywalker/MonoDETR/tree/main). Please refer to the LICENSE file for more information.
 
 ## Citation
 
