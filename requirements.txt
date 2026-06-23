@@ -4,3 +4,9 @@ opencv-python
 numba
 scikit-image
 tqdm
+matplotlib
+fire
+einops
+easydict
+tensorboard==2.15.1
+numpy==1.26.4
