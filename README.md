@@ -85,7 +85,8 @@ KITTI/object/
 │   ├── calib/
 │   ├── image_2/
 │   ├── road_masks/             # Road masks for patch augmentation
-│   ├── 30/                     # sparsity 
+│   ├── 30/                     # sparsity
+│   │   ├── pct_30/             # sparse labels
 │   │   ├── patch/              # Patch images
 │   │   └── label_patch/        # Patch labels
 └── testing/
