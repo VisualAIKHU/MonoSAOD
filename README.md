@@ -49,27 +49,24 @@ git clone https://github.com/VisualAIKHU/MonoSAOD.git
 cd MonoSAOD
 ```
 
-2. Create a virtual environment (optional but recommended):
+2. Create a virtual environment:
 ```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+conda create -n monosaod python=3.10
+conda activate monosaod
 ```
 
-3. Install dependencies:
+3. Setup:
 ```bash
-pip install -r requirements.txt  # If available
-# Or manually install:
-pip install torch torchvision torchaudio
-pip install pyyaml numpy scipy
-```
+pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu121 # install this according to your nvcc version
+pip install -r requirements.txt
 
-4. Build the Multi-Scale Deformable Attention (CUDA extensions):
-```bash
-cd lib/models/monodetr/ops
-python setup.py build_ext --inplace
+cd lib/models/monodetr/ops/
+bash make.sh
+
 cd ../../../..
-```
 
+mkdir logs
+```
 ## Dataset
 
 ### KITTI 3D Object Detection Dataset
@@ -81,19 +78,19 @@ This project uses the KITTI 3D object detection dataset with patch augmentation.
 2. Extract and organize the dataset:
 ```
 KITTI/object/
+├── ImageSets/
+    ├── train.txt
+    ├── val.txt
 ├── training/
 │   ├── calib/
 │   ├── image_2/
-│   ├── velodyne/
+│   ├── road_masks/             # Road masks for patch augmentation
 │   ├── 30/                     # sparsity 
 │   │   ├── patch/              # Patch images
 │   │   └── label_patch/        # Patch labels
-│   └── patch_dirs/
-│       └── road_masks/         # Road masks for patch augmentation
 └── testing/
     ├── calib/
     ├── image_2/
-    └── velodyne/
 ```
 
 3. Update the dataset path in `configs/monodetr.yaml`:
@@ -107,64 +104,12 @@ dataset:
 
 ### Patch Augmentation Setup
 
-The model uses patch-based augmentation. Here's how to set it up:
+Download the patch files and road masks from here: 
 
-1. **Prepare patch directory structure:**
-```bash
-mkdir -p KITTI/object/training/30/patch
-mkdir -p KITTI/object/training/30/label_patch
-mkdir -p KITTI/object/training/patch_dirs/road_masks
-```
-
-2. **Place patch files:**
+ **patch files:**
    - **`patch/`**: Contains cropped object patches from training images
    - **`label_patch/`**: Contains corresponding labels for patches
    - **`road_masks/`**: Contains binary masks of road regions for augmentation
-
-3. **Generate patches (if needed):**
-   - Use the provided scripts in `lib/datasets/kitti/patch_augmentation.py` to generate patches from KITTI training data
-   - Patches should be small cropped images of detected objects
-
-### Dataset Configuration
-
-Key configuration options in `configs/monodetr.yaml`:
-
-- `train_split`: Training data split (default: 'train')
-- `test_split`: Testing data split (default: 'val')
-- `batch_size`: Batch size for training (default: 16)
-- `use_3d_center`: Use 3D center as target (default: True)
-- `writelist`: Classes to detect (default: ['Car'])
-
-## Generating Patches (Optional)
-
-If you need to generate patches from KITTI training data:
-
-1. **Run the patch generation script:**
-```bash
-cd lib/datasets/kitti
-python patch_augmentation.py --kitti_root /path/to/KITTI/object \
-                             --output_dir /path/to/KITTI/object/training/30 \
-                             --split train
-cd ../../../
-```
-
-2. **Output structure:**
-```
-training/30/
-├── patch/              # Generated patch images
-│   ├── 000000_0.png
-│   ├── 000000_1.png
-│   └── ...
-└── label_patch/        # Generated patch labels
-    ├── 000000_0.txt
-    ├── 000000_1.txt
-    └── ...
-```
-
-3. **Road masks generation (if needed):**
-   - Generate binary masks for road regions
-   - Place them in `training/patch_dirs/road_masks/`
-   - Used for more realistic patch placement during augmentation
 
 ## Training
 
@@ -173,73 +118,18 @@ training/30/
 To start training with the default configuration:
 
 ```bash
-python tools/train_val.py --config configs/monodetr.yaml
-```
-
-Or using the provided script:
-```bash
-./train.sh configs/monodetr.yaml
-```
-
-### Training Configuration
-
-Key hyperparameters in `configs/monodetr.yaml`:
-
-- **Model**: ResNet50 backbone with depth-aware transformer
-- **Depth Predictor**: LID mode with 80 depth bins
-- **Batch Size**: 16
-- **Learning Rate**: Configured in the yaml file
-- **Epochs**: Configured in the yaml file
-
-### Output
-
-Training outputs are saved to:
-```
-logs/monodetr/
-├── train.log.*
-├── checkpoints/
-└── ...
+bash train.sh configs/monodetr.yaml > logs/monodetr.log
 ```
 
 ## Evaluation
 
-### Evaluate on Test Set
+### Evaluate on Validation Set
 
-To evaluate the model on the test set:
+To evaluate the model:
 
 ```bash
-python tools/train_val.py --config configs/monodetr.yaml -e
+bash test.sh configs/monodetr.yaml
 ```
-
-Or with the short flag:
-```bash
-python tools/train_val.py --config configs/monodetr.yaml --evaluate_only
-```
-
-### Metrics
-
-The evaluation reports standard KITTI metrics:
-- Average Precision (AP) for each difficulty level (Easy, Moderate, Hard)
-- Averaged over different IoU thresholds
-
-## Pretrained Models
-
-If you have a pretrained checkpoint, you can load it by specifying in the config:
-
-```yaml
-teacher_checkpoint: '/path/to/checkpoint.pth'
-```
-
-The model uses a student-teacher learning approach where:
-- **Student Model**: Trainable model
-- **Teacher Model**: EMA-updated copy of the student model
-
-## Model Architecture
-
-- **Backbone**: ResNet50
-- **Neck**: Multi-scale feature extraction
-- **Head**: Depth-aware Transformer with deformable attention
-- **Depth Predictor**: Estimates depth distribution for each object
 
 ## Directory Structure
 
