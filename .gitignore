@@ -46,3 +46,7 @@ Thumbs.db
 *.log
 ckpt/*
 !ckpt/.gitkeep
+
+
+
+.lib
